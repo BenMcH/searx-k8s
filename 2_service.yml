@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: morty
+  namespace: searx
+spec:
+  ports:
+  - name: morty
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: searx
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: searx
+  namespace: searx
+spec:
+  ports:
+  - name: searx
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: searx
+  sessionAffinity: None
+  type: ClusterIP
